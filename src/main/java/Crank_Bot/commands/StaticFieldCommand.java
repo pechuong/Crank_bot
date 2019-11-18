@@ -19,7 +19,7 @@ public class StaticFieldCommand extends Command {
 		Guild guild = event.getGuild();
 		VoiceChannel target = event.getMember().getVoiceState().getChannel();
 		AudioManager manager = guild.getAudioManager();
-		
+		/* test */
 	}
 
 }
