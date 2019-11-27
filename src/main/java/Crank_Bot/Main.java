@@ -10,7 +10,9 @@ import javax.security.auth.login.LoginException;
 import com.jagrosh.jdautilities.command.CommandClientBuilder;
 import com.jagrosh.jdautilities.commons.waiter.EventWaiter;
 
+import Crank_Bot.commands.ClearChat;
 import Crank_Bot.commands.RocketGrabCommand;
+import Crank_Bot.commands.StaticFieldCommand;
 import net.dv8tion.jda.api.AccountType;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
@@ -39,7 +41,7 @@ public class Main {
         List<String> list = Files.readAllLines(Paths.get("config.txt"));
         String token = list.get(0);
         String ownerId = list.get(1);
-
+        
         // define an eventwaiter, dont forget to add this to the JDABuilder!
         EventWaiter waiter = new EventWaiter();
 
@@ -58,7 +60,9 @@ public class Main {
 
         // adds commands
         client.addCommands(
-        		new RocketGrabCommand()
+        		new RocketGrabCommand(),
+        		new StaticFieldCommand(),
+        		new ClearChat()
                 // command to show information about the bot
         		/*
                 new AboutCommand(Color.BLUE, "an example bot",
