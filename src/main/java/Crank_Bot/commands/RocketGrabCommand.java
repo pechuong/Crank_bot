@@ -27,7 +27,9 @@ public class RocketGrabCommand extends Command {
 	@Override
 	protected void execute(CommandEvent event) {
 		
-		//String[] args = event.getArgs().split("\\s+?");
+		String[] args = event.getArgs().split("\\s+?");
+		//event.reply(Integer.toString(args.length));
+		//event.reply("Arg 0 is:[" + args[0] + "]");
 		if (!event.getMember().getVoiceState().inVoiceChannel()) {
 			event.reply("YOu NeEd tO bE in a vOiCe ChanNel to uSe This!");
 			return;
