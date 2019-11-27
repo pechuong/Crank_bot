@@ -30,11 +30,13 @@ public class RocketGrabCommand extends Command {
 		String[] args = event.getArgs().split("\\s+?");
 		//event.reply(Integer.toString(args.length));
 		//event.reply("Arg 0 is:[" + args[0] + "]");
+		/* Makes sure that a member is in voice channel to use this */
 		if (!event.getMember().getVoiceState().inVoiceChannel()) {
 			event.reply("YOu NeEd tO bE in a vOiCe ChanNel to uSe This!");
 			return;
 		}
 		
+		/* Get voice channel to drag everyone to */
 		VoiceChannel target = event.getMember().getVoiceState().getChannel();
 		Guild guild = event.getGuild();
 		Member author = event.getMember();

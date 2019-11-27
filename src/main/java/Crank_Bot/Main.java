@@ -10,7 +10,7 @@ import javax.security.auth.login.LoginException;
 import com.jagrosh.jdautilities.command.CommandClientBuilder;
 import com.jagrosh.jdautilities.commons.waiter.EventWaiter;
 
-import Crank_Bot.commands.ClearChat;
+import Crank_Bot.commands.ClearChatCommand;
 import Crank_Bot.commands.RocketGrabCommand;
 import Crank_Bot.commands.StaticFieldCommand;
 import net.dv8tion.jda.api.AccountType;
@@ -33,11 +33,11 @@ public class Main {
 	public static String prefix = "~";
 	
 	public static void main(String[] args) throws LoginException, IOException {
-		/* 
+		/*------------------------------------- 
 		 * config.txt contains two lines 
 		 * - first is bot token
 		 * - second is ownerId
-		 */
+		 *------------------------------------*/
         List<String> list = Files.readAllLines(Paths.get("config.txt"));
         String token = list.get(0);
         String ownerId = list.get(1);
@@ -45,24 +45,24 @@ public class Main {
         // define an eventwaiter, dont forget to add this to the JDABuilder!
         EventWaiter waiter = new EventWaiter();
 
-        // define a command client
+        /*--------------------------------------------------------- 
+         * - define a command client
+         *  - set the activity
+         *  - set the owner of the bot
+         *  - set the emojis for on success, warning, & failure
+         *  - set the prefix
+         *--------------------------------------------------------*/
         CommandClientBuilder client = new CommandClientBuilder();
         client.setActivity(Activity.watching("my adc die :^)"));
-
-        // sets the owner of the bot
         client.setOwnerId(ownerId);
-
-        // sets emojis used throughout the bot on successes, warnings, and failures
         client.setEmojis("\uD83D\uDE03", "\uD83D\uDE2E", "\uD83D\uDE26");
-
-        // sets the bot prefix
         client.setPrefix("~");
 
-        // adds commands
+        /* Add the commands */
         client.addCommands(
         		new RocketGrabCommand(),
         		new StaticFieldCommand(),
-        		new ClearChat()
+        		new ClearChatCommand()
                 // command to show information about the bot
         		/*
                 new AboutCommand(Color.BLUE, "an example bot",
@@ -88,7 +88,7 @@ public class Main {
 		jda = new JDABuilder(AccountType.BOT)
 				.setToken(token)
 				.setStatus(OnlineStatus.IDLE)
-				.setActivity(Activity.watching("my adc die :^)"))
+				.setActivity(Activity.watching("my adc die :-)"))
 				.addEventListeners(waiter, client.build())
 				.build();
 	}
