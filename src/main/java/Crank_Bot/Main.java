@@ -11,6 +11,7 @@ import com.jagrosh.jdautilities.command.CommandClientBuilder;
 import com.jagrosh.jdautilities.commons.waiter.EventWaiter;
 
 import Crank_Bot.commands.ClearChatCommand;
+import Crank_Bot.commands.PadoruCommand;
 import Crank_Bot.commands.RocketGrabCommand;
 import Crank_Bot.commands.StaticFieldCommand;
 import net.dv8tion.jda.api.AccountType;
@@ -62,7 +63,8 @@ public class Main {
         client.addCommands(
         		new RocketGrabCommand(),
         		new StaticFieldCommand(),
-        		new ClearChatCommand()
+        		new ClearChatCommand(),
+        		new PadoruCommand()
                 // command to show information about the bot
         		/*
                 new AboutCommand(Color.BLUE, "an example bot",
