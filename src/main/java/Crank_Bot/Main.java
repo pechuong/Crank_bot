@@ -14,6 +14,7 @@ import Crank_Bot.commands.ClearChatCommand;
 import Crank_Bot.commands.PadoruCommand;
 import Crank_Bot.commands.RocketGrabCommand;
 import Crank_Bot.commands.StaticFieldCommand;
+import Crank_Bot.commands.UwuCommand;
 import net.dv8tion.jda.api.AccountType;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
@@ -64,7 +65,8 @@ public class Main {
         		new RocketGrabCommand(),
         		new StaticFieldCommand(),
         		new ClearChatCommand(),
-        		new PadoruCommand()
+        		new PadoruCommand(),
+        		new UwuCommand()
                 // command to show information about the bot
         		/*
                 new AboutCommand(Color.BLUE, "an example bot",
