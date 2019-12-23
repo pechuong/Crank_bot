@@ -6,6 +6,7 @@ import java.util.List;
 import com.jagrosh.jdautilities.command.Command;
 import com.jagrosh.jdautilities.command.CommandEvent;
 
+import Crank_Bot.RobotSpeech;
 import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.User;
@@ -29,7 +30,7 @@ public class RocketGrabCommand extends Command {
 	protected void execute(CommandEvent event) {		
 		/* Makes sure that a member is in voice channel to use this */
 		if (!event.getMember().getVoiceState().inVoiceChannel()) {
-			event.reply("YOu NeEd tO bE in a vOiCe ChanNel to uSe This!");
+			event.reply(RobotSpeech.robotify("You need to be in a voice channel to use this!"));
 			return;
 		}
 		
@@ -38,26 +39,22 @@ public class RocketGrabCommand extends Command {
 		/* Get voice channel to drag everyone to */
 		VoiceChannel location = event.getMember().getVoiceState().getChannel();
 		Guild guild = event.getGuild();
-		Member author = event.getMember();
 
+		event.getChannel().sendTyping().queue();
 		/* User wants to pull everyone */
 		if (args == null) {
+			event.reply(RobotSpeech.robotify("Okay " + event.getAuthor().getAsMention() + " I will grab them all!"));
 			event.getChannel().sendTyping().queue();
-			event.reply("okAY " + event.getAuthor().getAsMention() + " i WilL GRab tHem AlL!");
-			event.reply("ComMenCiNg rOckeT-grAb On eveRYoNe...");
-			pull(event, location, guild);
+			event.reply(RobotSpeech.robotify("Commencing Rocket-Grab on everyone..."));
+			pull(location, guild);
 			return;
 		}
-		
-		List<User> mentions = event.getMessage().getMentionedUsers();
-		for (User mentioned : mentions) {
-			Member member = guild.getMember(mentioned);
-			guild.moveVoiceMember(member, location).queue();
-		}
-		event.reply("Moving has finished....");
+		pull(event, location, guild);
+		event.getChannel().sendTyping().queue();
+		event.reply(RobotSpeech.robotify("Moving has finished...."));
 	}
 	
-	private void pull(CommandEvent event, VoiceChannel location, Guild guild) {
+	private void pull(VoiceChannel location, Guild guild) {
 		List<VoiceChannel> channels = new ArrayList<>(guild.getVoiceChannels());
 		channels.remove(location);
 		
@@ -70,8 +67,14 @@ public class RocketGrabCommand extends Command {
 		}
 	}
 	
-	private void pull(String[] args) {
-		
+	private void pull(CommandEvent event, VoiceChannel location, Guild guild) {
+		event.getMessage().getMentionedUsers().stream()
+		.forEach(
+				person -> guild.moveVoiceMember(
+						guild.getMember(person), 
+						location)
+				.queue()
+		);
 	}
 
 }

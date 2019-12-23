@@ -1,6 +1,6 @@
 package Crank_Bot;
 
-class RobotSpeech {
+public abstract class RobotSpeech {
 	public static String robotify(String message) {
 		StringBuilder converted = new StringBuilder();
 		for (char c : message.toCharArray()) {
