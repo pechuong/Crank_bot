@@ -23,7 +23,6 @@ public class RocketGrabCommand extends Command {
 		this.name = "rocket-grab";
 		this.aliases = new String[]{"pull"};
 		this.help = "Grabs all members in voice chat to specific channel";
-		//this.arguments = new Arguments[] {"[member]"};
 	}
 	
 	@Override
@@ -33,10 +32,9 @@ public class RocketGrabCommand extends Command {
 			event.reply(RobotSpeech.robotify("You need to be in a voice channel to use this!"));
 			return;
 		}
-		
 		String[] args = event.getArgs().length() > 0 ? event.getArgs().split("\\s") : null;
 		
-		/* Get voice channel to drag everyone to */
+		/* Get channel to drag to in the guild */
 		VoiceChannel location = event.getMember().getVoiceState().getChannel();
 		Guild guild = event.getGuild();
 
@@ -44,20 +42,18 @@ public class RocketGrabCommand extends Command {
 		/* User wants to pull everyone */
 		if (args == null) {
 			event.reply(RobotSpeech.robotify("Okay " + event.getAuthor().getAsMention() + " I will grab them all!"));
-			event.getChannel().sendTyping().queue();
 			event.reply(RobotSpeech.robotify("Commencing Rocket-Grab on everyone..."));
 			pull(location, guild);
 			return;
 		}
+		event.reply(RobotSpeech.robotify("Okay " + event.getAuthor().getAsMention() + " I will grab the requested members!"));
 		pull(event, location, guild);
-		event.getChannel().sendTyping().queue();
 		event.reply(RobotSpeech.robotify("Moving has finished...."));
 	}
 	
 	private void pull(VoiceChannel location, Guild guild) {
 		List<VoiceChannel> channels = new ArrayList<>(guild.getVoiceChannels());
 		channels.remove(location);
-		
 		for (VoiceChannel voice : channels) {
 			/* Checks for empty channel */
 			if (voice.getMembers() != null) {
