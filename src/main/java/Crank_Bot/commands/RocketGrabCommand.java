@@ -8,8 +8,6 @@ import com.jagrosh.jdautilities.command.CommandEvent;
 
 import Crank_Bot.RobotSpeech;
 import net.dv8tion.jda.api.entities.Guild;
-import net.dv8tion.jda.api.entities.Member;
-import net.dv8tion.jda.api.entities.User;
 import net.dv8tion.jda.api.entities.VoiceChannel;
 
 /**
