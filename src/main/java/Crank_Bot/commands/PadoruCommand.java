@@ -21,6 +21,7 @@ public class PadoruCommand extends Command {
 
 	@Override
 	protected void execute(CommandEvent event) {
+		/* Read the list of messages */
 		List<String> list;
         try {
 			list = Files.readAllLines(Paths.get("src/main/java/Crank_Bot/commands/padoru_messages.txt"));
@@ -31,16 +32,21 @@ public class PadoruCommand extends Command {
 		}
         /* Remove the first line b/c comment */
         list.remove(0);
-		
-		EmbedBuilder em = new EmbedBuilder();
-		em.setTitle(RobotSpeech.robotify("Padoru Says..."));
-		
         int response = (int) (Math.round(Math.random()*(list.size()-1)));
-        em.addField(list.get(response), "", false);
-        em.addField("aimed at ", event.getMember().getAsMention(), false);
-        em.setFooter("~Padooooruuuuu", "https://i.kym-cdn.com/photos/images/masonry/001/568/913/510.png");
 		
+        /* Build the Embed Card */
+		EmbedBuilder em = new EmbedBuilder();
+		em.setTitle(RobotSpeech.robotify("Padoru Says..."));	
+        em.addField(list.get(response), "", false);
+        em.addField("message for ", event.getMember().getAsMention(), true);
+        em.setFooter("~Padooooruuuuu", "https://i.kym-cdn.com/photos/images/masonry/001/568/913/510.png");
 		event.reply(em.build());
+		
+		
+	}
+	
+	public void add() {
+		
 	}
 	
 	

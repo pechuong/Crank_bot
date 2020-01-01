@@ -66,8 +66,7 @@ public class RocketGrabCommand extends Command {
 		.forEach(
 				person -> guild.moveVoiceMember(
 						guild.getMember(person), 
-						location)
-				.queue()
+						location).queue()
 		);
 	}
 

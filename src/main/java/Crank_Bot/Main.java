@@ -63,7 +63,7 @@ public class Main {
         /* Add the commands */
         client.addCommands(
         		new RocketGrabCommand(),
-        		new StaticFieldCommand(),
+        		new StaticFieldCommand(waiter),
         		new ClearChatCommand(),
         		new PadoruCommand(),
         		new UwuCommand()
