@@ -27,11 +27,16 @@ dependencies {
     // Use JUnit test framework
     testImplementation 'junit:junit:4.12'
     
+    // LavaPlayer for discord music bot
+    implementation 'com.sedmelluq:lavaplayer:1.3.33'
+    
     // JDA dependency
     compile 'net.dv8tion:JDA:4.0.0_56'
     
     // JDA-util
     compile 'com.jagrosh:jda-utilities:3.0.2'
+    
+    
     
 }
 
