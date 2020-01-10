@@ -27,13 +27,16 @@ dependencies {
     // Use JUnit test framework
     testImplementation 'junit:junit:4.12'
     
+    // Log4j2 logger for debugging
+    compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.8.2'
+    
     // LavaPlayer for discord music bot
     implementation 'com.sedmelluq:lavaplayer:1.3.33'
     
     // JDA dependency
     compile 'net.dv8tion:JDA:4.0.0_56'
     
-    // JDA-util
+    // JDA-util for compact and clean command building
     compile 'com.jagrosh:jda-utilities:3.0.2'
     
     
