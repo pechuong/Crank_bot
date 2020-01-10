@@ -3,6 +3,9 @@ package Crank_Bot.commands;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.jagrosh.jdautilities.command.Command;
 import com.jagrosh.jdautilities.command.CommandEvent;
 
@@ -16,7 +19,9 @@ import net.dv8tion.jda.api.entities.VoiceChannel;
  * @author Peter Chuong	(pc9673@gmail.com)
  */
 public class RocketGrabCommand extends Command {
-
+	
+	Logger logger = LoggerFactory.getLogger(getClass());
+	
 	public RocketGrabCommand() {
 		this.name = "rocket-grab";
 		this.aliases = new String[]{"pull"};
@@ -24,9 +29,11 @@ public class RocketGrabCommand extends Command {
 	}
 	
 	@Override
-	protected void execute(CommandEvent event) {		
+	protected void execute(CommandEvent event) {
+		logger.debug("RocketGrab Command has started executing...");
 		/* Makes sure that a member is in voice channel to use this */
 		if (!event.getMember().getVoiceState().inVoiceChannel()) {
+			logger.debug("User: %s has called command but is not in voice channel!", event.getAuthor().getAsTag());
 			event.reply(RobotSpeech.robotify("You need to be in a voice channel to use this!"));
 			return;
 		}
