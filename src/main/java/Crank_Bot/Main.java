@@ -9,6 +9,7 @@ import javax.security.auth.login.LoginException;
 
 import com.jagrosh.jdautilities.command.CommandClientBuilder;
 import com.jagrosh.jdautilities.commons.waiter.EventWaiter;
+import com.sedmelluq.discord.lavaplayer.player.AudioPlayer;
 import com.sedmelluq.discord.lavaplayer.player.AudioPlayerManager;
 import com.sedmelluq.discord.lavaplayer.player.DefaultAudioPlayerManager;
 import com.sedmelluq.discord.lavaplayer.source.AudioSourceManagers;
@@ -55,8 +56,18 @@ public class Main {
         // define an eventwaiter, dont forget to add this to the JDABuilder!
         EventWaiter waiter = new EventWaiter();
         
+        // Create audio player manager
         AudioPlayerManager playerManager = new DefaultAudioPlayerManager();
         AudioSourceManagers.registerRemoteSources(playerManager);
+        
+        // Make the audio player
+        AudioPlayer player = playerManager.createPlayer();
+        
+        // Have the player listen for events(DJ class)
+        DJ dj = new DJ(player);
+        player.addListener(dj);
+        
+        
         /*--------------------------------------------------------- 
          * - define a command client
          *  - set the activity
