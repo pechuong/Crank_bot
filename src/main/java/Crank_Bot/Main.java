@@ -9,6 +9,9 @@ import javax.security.auth.login.LoginException;
 
 import com.jagrosh.jdautilities.command.CommandClientBuilder;
 import com.jagrosh.jdautilities.commons.waiter.EventWaiter;
+import com.sedmelluq.discord.lavaplayer.player.AudioPlayerManager;
+import com.sedmelluq.discord.lavaplayer.player.DefaultAudioPlayerManager;
+import com.sedmelluq.discord.lavaplayer.source.AudioSourceManagers;
 
 import Crank_Bot.commands.ClearChatCommand;
 import Crank_Bot.commands.PadoruCommand;
@@ -29,12 +32,17 @@ import net.dv8tion.jda.api.entities.Activity;
  * @author John Grosh (john.a.grosh@gmail.com)
  * @author Peter Chuong (pc9673@gmail.com)
  */
-
 public class Main {
 	public static JDA jda;
 	public static String prefix = "~";
 	
+	
 	public static void main(String[] args) throws LoginException, IOException {
+		/*
+		Logger logger = LoggerFactory.getLogger(Main.class);
+		logger.info("Hello World");
+		*/
+				
 		/*------------------------------------- 
 		 * config.txt contains two lines 
 		 * - first is bot token
@@ -46,7 +54,9 @@ public class Main {
         
         // define an eventwaiter, dont forget to add this to the JDABuilder!
         EventWaiter waiter = new EventWaiter();
-
+        
+        AudioPlayerManager playerManager = new DefaultAudioPlayerManager();
+        AudioSourceManagers.registerRemoteSources(playerManager);
         /*--------------------------------------------------------- 
          * - define a command client
          *  - set the activity
