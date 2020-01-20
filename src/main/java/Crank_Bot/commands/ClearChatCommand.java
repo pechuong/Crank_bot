@@ -41,6 +41,8 @@ public class ClearChatCommand extends Command {
 			event.getChannel().purgeMessages(unwanted);
 		} catch (IllegalArgumentException e) {
 			event.reply(RobotSpeech.robotify("Error when trying to delete message..."));
+		} catch (Exception e) {
+			event.reply(RobotSpeech.robotify("Exception received when trying to delete...."));
 		}
 		event.reply(RobotSpeech.robotify("Chat has been cleared."));
 	}
