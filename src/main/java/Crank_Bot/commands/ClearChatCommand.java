@@ -37,7 +37,11 @@ public class ClearChatCommand extends Command {
 				unwanted.add(message);
 			}
 		}
-		event.getChannel().purgeMessages(unwanted);
+		try {
+			event.getChannel().purgeMessages(unwanted);
+		} catch (IllegalArgumentException e) {
+			event.reply(RobotSpeech.robotify("Error when trying to delete message..."));
+		}
 		event.reply(RobotSpeech.robotify("Chat has been cleared."));
 	}
 	
