@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Status determines which log4j log messages are included. -->
+<Configuration status="WARN">
+	<Appenders>
+		<!-- We can make the console output more user-friendly if we want. -->
+		<Console name="Console" target="SYSTEM_OUT">
+			<PatternLayout pattern="%m%ex{short.message}%n">
+			</PatternLayout>
+		</Console>
+
+		<!-- We can still keep details in a file log for debugging. -->
+		<File name="FileLog" fileName="debug.log" append="false">
+			<!-- pattern="[%level{Trace=1, DEBUG=2, INFO=3, WARN=4, ERROR=5, FATAL=6} %level{length=2}] %class.%method %t: %m %ex{3}%n"> -->
+			<PatternLayout
+				pattern="[%level] %d{yyyy/MM/dd HH:mm:ss} || %class -> %method %t: %m %ex{3}%n">
+			</PatternLayout>
+		</File>
+	</Appenders>
+
+	<Loggers>
+		<!-- 
+		*NOTE TO SELF* 
+				- name is the class we get log messages from.
+				- level is the level of log message
+				- additivity allows inheritance of loggers down from the specific one
+				
+			appenderRef = the appender to reference from above
+				- ref = name from the appenders 
+		-->
+		<!-- You can modify per-class logging levels if you want. -->
+		<Logger name="ThreadSafeInvertedIndexBuilder" level="FATAL" additivity="false">
+			<AppenderRef ref="Console" />
+		</Logger>
+		
+		<Logger name="Crank_Bot.Main" level="ALL" additivity="false">
+			<AppenderRef ref="FileLog" />
+		</Logger>
+
+		<!-- This is the configuration used by all other loggers. -->
+		<Root level="ALL">
+			<AppenderRef ref="Console" level="INFO" />
+			<AppenderRef ref="FileLog" level="ALL"  />
+		</Root>
+	</Loggers>
+</Configuration>

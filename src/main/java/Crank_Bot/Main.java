@@ -7,6 +7,9 @@ import java.util.List;
 
 import javax.security.auth.login.LoginException;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.jagrosh.jdautilities.command.CommandClientBuilder;
 import com.jagrosh.jdautilities.commons.waiter.EventWaiter;
 import com.sedmelluq.discord.lavaplayer.player.AudioPlayer;
@@ -36,13 +39,10 @@ import net.dv8tion.jda.api.entities.Activity;
 public class Main {
 	public static JDA jda;
 	public static String prefix = "~";
-	
+	private static final Logger logger = LogManager.getLogger(Main.class);
 	
 	public static void main(String[] args) throws LoginException, IOException {
-		/*
-		Logger logger = LoggerFactory.getLogger(Main.class);
 		logger.info("Hello World");
-		*/
 				
 		/*------------------------------------- 
 		 * config.txt contains two lines 
@@ -55,6 +55,8 @@ public class Main {
         
         // define an eventwaiter, dont forget to add this to the JDABuilder!
         EventWaiter waiter = new EventWaiter();
+        
+        logger.info("I got this far");
         
         // Create audio player manager
         AudioPlayerManager playerManager = new DefaultAudioPlayerManager();
