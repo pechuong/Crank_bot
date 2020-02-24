@@ -22,7 +22,6 @@ public class SuggestCommand extends Command {
 
 	@Override
 	protected void execute(CommandEvent event) {
-		// TODO Auto-generated method stub
 		String[] args = event.getArgs().length() > 0 ? event.getArgs().split("\\s") : null;
 		if (args == null) {
 			event.reply(RobotSpeech.robotify("Please suggest both a name and what it does(separate these by comma"));
