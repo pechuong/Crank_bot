@@ -18,7 +18,6 @@ public class RedTrinketCommand extends Command {
 
 	@Override
 	protected void execute(CommandEvent event) {
-		// TODO Auto-generated method stub
 		List<Member> members = event.getMessage().getMentionedMembers();
 		for (Member m : members) {
 			m.getUser().openPrivateChannel();
