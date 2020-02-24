@@ -19,8 +19,10 @@ import com.sedmelluq.discord.lavaplayer.source.AudioSourceManagers;
 
 import Crank_Bot.commands.ClearChatCommand;
 import Crank_Bot.commands.PadoruCommand;
+import Crank_Bot.commands.RedTrinketCommand;
 import Crank_Bot.commands.RocketGrabCommand;
 import Crank_Bot.commands.StaticFieldCommand;
+import Crank_Bot.commands.SuggestCommand;
 import Crank_Bot.commands.UwuCommand;
 import net.dv8tion.jda.api.AccountType;
 import net.dv8tion.jda.api.JDA;
@@ -89,7 +91,9 @@ public class Main {
         		new StaticFieldCommand(waiter),
         		new ClearChatCommand(),
         		new PadoruCommand(),
-        		new UwuCommand()
+        		new UwuCommand(),
+        		new RedTrinketCommand(),
+        		new SuggestCommand()
                 // command to show information about the bot
         		/*
                 new AboutCommand(Color.BLUE, "an example bot",
