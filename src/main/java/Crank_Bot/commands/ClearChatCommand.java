@@ -16,17 +16,16 @@ import net.dv8tion.jda.api.entities.TextChannel;
 public class ClearChatCommand extends Command {
 	
 	private static final Logger logger = LogManager.getLogger(ClearChatCommand.class);
+	private static int called = 0;
 
 	public ClearChatCommand() {
 		this.name = "clear-chat";
 		this.aliases = new String[] {"clean"};
 		this.help = "Cleans the chat of commands msgs";
-		logger.info("inconstructor");
 	}
 	
 	@Override
 	protected void execute(CommandEvent event) {
-		logger.info("I got into the execute method");
 		if (!event.getMember().isOwner()) {
 			event.reply(RobotSpeech.robotify("Sorry you are not permitted to perform such actions!"));
 			return;
@@ -34,12 +33,21 @@ public class ClearChatCommand extends Command {
 		TextChannel channel = event.getTextChannel();
 		event.reply(RobotSpeech.robotify("Clearing chat commands & bot messages..."));
 		
+		String[] args = event.getArgs().length() > 0 ? event.getArgs().split("\\s") : null;
+		boolean all = args != null ? args.length > 1 : false;
 		List<Message> messages = event.getChannel().getHistory().retrievePast(100).complete();
+		for (int i = 0; i < called; i++) {
+			messages = event.getChannel().getHistory().retrievePast(100).complete();
+		}
+		called++;
 		ArrayList<Message> unwanted = new ArrayList<>();
 		for (Message message : messages) {
 			boolean command = message.getContentRaw().matches(event.getClient().getPrefix() + ".*?");
 			boolean bot = message.getAuthor().isBot();
-			if (command || bot) {
+			if (all || !message.isPinned()) {
+				unwanted.add(message);
+			}
+			else if (command || bot) {
 				unwanted.add(message);
 			}
 		}
