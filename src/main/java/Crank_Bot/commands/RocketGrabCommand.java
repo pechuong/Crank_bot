@@ -57,16 +57,18 @@ public class RocketGrabCommand extends Command {
 	}
 	
 	private void pull(VoiceChannel location, Guild guild) {
-		logger.info("Got in the rocket grab cmd");
+		logger.debug("Initiating universal pull...");
+		logger.debug("location: " + location);
+		logger.debug("guild: " + guild);
 		List<VoiceChannel> channels = new ArrayList<>(guild.getVoiceChannels());
 		channels.remove(location);
 		for (VoiceChannel voice : channels) {
 			/* Checks for empty channel */
 			if (voice.getMembers() != null) {
 				voice.getMembers().stream().forEach(member -> guild.moveVoiceMember(member, location).queue());
-			}
-			 
+			} 
 		}
+		logger.debug("pulling has concluded...");
 	}
 	
 	private void pull(CommandEvent event, VoiceChannel location, Guild guild) {

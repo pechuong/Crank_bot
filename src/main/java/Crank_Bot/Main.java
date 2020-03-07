@@ -19,6 +19,7 @@ import com.sedmelluq.discord.lavaplayer.source.AudioSourceManagers;
 
 import Crank_Bot.commands.ClearChatCommand;
 import Crank_Bot.commands.PadoruCommand;
+import Crank_Bot.commands.PowerFistCommand;
 import Crank_Bot.commands.RedTrinketCommand;
 import Crank_Bot.commands.RocketGrabCommand;
 import Crank_Bot.commands.StaticFieldCommand;
@@ -93,7 +94,8 @@ public class Main {
         		new PadoruCommand(),
         		new UwuCommand(),
         		new RedTrinketCommand(),
-        		new SuggestCommand()
+        		new SuggestCommand(),
+        		new PowerFistCommand()
                 // command to show information about the bot
         		/*
                 new AboutCommand(Color.BLUE, "an example bot",
