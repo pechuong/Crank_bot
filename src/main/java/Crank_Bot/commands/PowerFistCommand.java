@@ -29,16 +29,22 @@ public class PowerFistCommand extends Command {
 		if (members.size() < 1) {
 			members = null;
 		}
+		if (members == null) {
+			event.reply(RobotSpeech.robotify("Fisting everyone b/c no one was mentioned..."));
+			members = event.getGuild().getMembers();
+		}
 		Guild guild = event.getGuild();
 		List<VoiceChannel> voices = event.getGuild().getVoiceChannels();
 		VoiceChannel current = event.getMember().getVoiceState().getChannel();
 		// Check if they are online and movable
 		
 		// Get the voice channel to move to
-		VoiceChannel target = voices.get(voices.indexOf(current) - 1 % voices.size());
+		VoiceChannel target = voices.get(Math.abs(voices.indexOf(current) - 1 + (voices.size()-1)) % (voices.size()-1));
 		for (Member member : members) {
-			guild.moveVoiceMember(member, target).queue();
-			event.reply(RobotSpeech.robotify("Get fisted, " + member.getAsMention()));
+			if (member.getVoiceState().inVoiceChannel()) {
+				guild.moveVoiceMember(member, target).queue();
+				event.reply(RobotSpeech.robotify("Get fisted, " + member.getAsMention()));
+			}
 		}
 		event.reply(RobotSpeech.robotify("Finished fisting..."));
 	}
