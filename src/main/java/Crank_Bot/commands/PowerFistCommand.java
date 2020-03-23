@@ -39,7 +39,7 @@ public class PowerFistCommand extends Command {
 		// Check if they are online and movable
 		
 		// Get the voice channel to move to
-		VoiceChannel target = voices.get(Math.abs(voices.indexOf(current) - 1 + (voices.size()-1)) % (voices.size()-1));
+		VoiceChannel target = voices.get(Math.abs(voices.indexOf(current) - 1 + (voices.size())) % (voices.size()));
 		for (Member member : members) {
 			if (member.getVoiceState().inVoiceChannel()) {
 				guild.moveVoiceMember(member, target).queue();
