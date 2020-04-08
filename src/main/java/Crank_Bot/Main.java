@@ -12,10 +12,14 @@ import org.apache.logging.log4j.Logger;
 
 import com.jagrosh.jdautilities.command.CommandClientBuilder;
 import com.jagrosh.jdautilities.commons.waiter.EventWaiter;
+import com.sedmelluq.discord.lavaplayer.player.AudioLoadResultHandler;
 import com.sedmelluq.discord.lavaplayer.player.AudioPlayer;
 import com.sedmelluq.discord.lavaplayer.player.AudioPlayerManager;
 import com.sedmelluq.discord.lavaplayer.player.DefaultAudioPlayerManager;
 import com.sedmelluq.discord.lavaplayer.source.AudioSourceManagers;
+import com.sedmelluq.discord.lavaplayer.tools.FriendlyException;
+import com.sedmelluq.discord.lavaplayer.track.AudioPlaylist;
+import com.sedmelluq.discord.lavaplayer.track.AudioTrack;
 
 import Crank_Bot.commands.ClearChatCommand;
 import Crank_Bot.commands.PadoruCommand;
@@ -72,8 +76,31 @@ public class Main {
         DJ dj = new DJ(player);
         player.addListener(dj);
         
+        playerManager.loadItem("Youtube", new AudioLoadResultHandler() {
+        	  @Override
+        	  public void trackLoaded(AudioTrack track) {
+        	    dj.queue(track);
+        	  }
+
+        	  @Override
+        	  public void playlistLoaded(AudioPlaylist playlist) {
+        	    for (AudioTrack track : playlist.getTracks()) {
+        	      dj.queue(track);
+        	    }
+        	  }
+
+        	  @Override
+        	  public void noMatches() {
+        	    // Notify the user that we've got nothing
+        	  }
+
+        	  @Override
+        	  public void loadFailed(FriendlyException throwable) {
+        	    // Notify the user that everything exploded
+        	  }
+        	});
         
-        /*--------------------------------------------------------- 
+        /*-------------------------------------------------------- 
          * - define a command client
          *  - set the activity
          *  - set the owner of the bot

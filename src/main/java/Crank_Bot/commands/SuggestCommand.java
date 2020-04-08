@@ -10,7 +10,7 @@ import com.google.common.io.Files;
 import com.jagrosh.jdautilities.command.Command;
 import com.jagrosh.jdautilities.command.CommandEvent;
 
-import Crank_Bot.RobotSpeech;
+import Crank_Bot.Robot;
 
 public class SuggestCommand extends Command {
 	
@@ -24,7 +24,7 @@ public class SuggestCommand extends Command {
 	protected void execute(CommandEvent event) {
 		String[] args = event.getArgs().length() > 0 ? event.getArgs().split("\\s") : null;
 		if (args == null) {
-			event.reply(RobotSpeech.robotify("Please suggest both a name and what it does(separate these by comma"));
+			event.reply(Robot.voice("Please suggest both a name and what it does(separate these by comma"));
 			return;
 		}
 		try {
@@ -38,7 +38,7 @@ public class SuggestCommand extends Command {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		event.reply(RobotSpeech.robotify("Noted..."));
+		event.reply(Robot.voice("Noted..."));
 	}
 
 }

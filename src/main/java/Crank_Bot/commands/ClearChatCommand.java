@@ -9,7 +9,7 @@ import org.apache.logging.log4j.Logger;
 import com.jagrosh.jdautilities.command.Command;
 import com.jagrosh.jdautilities.command.CommandEvent;
 
-import Crank_Bot.RobotSpeech;
+import Crank_Bot.Robot;
 import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.entities.TextChannel;
 
@@ -27,11 +27,11 @@ public class ClearChatCommand extends Command {
 	@Override
 	protected void execute(CommandEvent event) {
 		if (!event.getMember().isOwner()) {
-			event.reply(RobotSpeech.robotify("Sorry you are not permitted to perform such actions!"));
+			event.reply(Robot.voice("Sorry you are not permitted to perform such actions!"));
 			return;
 		}
 		TextChannel channel = event.getTextChannel();
-		event.reply(RobotSpeech.robotify("Clearing chat commands & bot messages..."));
+		event.reply(Robot.voice("Clearing chat commands & bot messages..."));
 		
 		String[] args = event.getArgs().length() > 0 ? event.getArgs().split("\\s") : null;
 		boolean all = args != null ? args.length > 1 : false;
@@ -54,11 +54,11 @@ public class ClearChatCommand extends Command {
 		try {
 			event.getChannel().purgeMessages(unwanted);
 		} catch (IllegalArgumentException e) {
-			event.reply(RobotSpeech.robotify("Error when trying to delete message..."));
+			event.reply(Robot.voice("Error when trying to delete message..."));
 		} catch (Exception e) {
-			event.reply(RobotSpeech.robotify("Exception received when trying to delete...."));
+			event.reply(Robot.voice("Exception received when trying to delete...."));
 		}
-		event.reply(RobotSpeech.robotify("Chat has been cleared."));
+		event.reply(Robot.voice("Chat has been cleared."));
 	}
 	
 }

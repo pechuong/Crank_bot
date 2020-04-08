@@ -9,7 +9,7 @@ import org.apache.logging.log4j.Logger;
 import com.jagrosh.jdautilities.command.Command;
 import com.jagrosh.jdautilities.command.CommandEvent;
 
-import Crank_Bot.RobotSpeech;
+import Crank_Bot.Robot;
 import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.entities.VoiceChannel;
 
@@ -34,7 +34,7 @@ public class RocketGrabCommand extends Command {
 		/* Makes sure that a member is in voice channel to use this */
 		if (!event.getMember().getVoiceState().inVoiceChannel()) {
 			logger.debug("User: %s has called command but is not in voice channel!", event.getAuthor().getAsTag());
-			event.reply(RobotSpeech.robotify("You need to be in a voice channel to use this!"));
+			event.reply(Robot.voice("You need to be in a voice channel to use this!"));
 			return;
 		}
 		String[] args = event.getArgs().length() > 0 ? event.getArgs().split("\\s") : null;
@@ -46,14 +46,14 @@ public class RocketGrabCommand extends Command {
 		event.getChannel().sendTyping().queue();
 		/* User wants to pull everyone */
 		if (args == null) {
-			event.reply(RobotSpeech.robotify("Okay " + event.getAuthor().getAsMention() + " I will grab them all!"));
-			event.reply(RobotSpeech.robotify("Commencing Rocket-Grab on everyone..."));
+			event.reply(Robot.voice("Okay " + event.getAuthor().getAsMention() + " I will grab them all!"));
+			event.reply(Robot.voice("Commencing Rocket-Grab on everyone..."));
 			pull(location, guild);
 			return;
 		}
-		event.reply(RobotSpeech.robotify("Okay " + event.getAuthor().getAsMention() + " I will grab the requested members!"));
+		event.reply(Robot.voice("Okay " + event.getAuthor().getAsMention() + " I will grab the requested members!"));
 		pull(event, location, guild);
-		event.reply(RobotSpeech.robotify("Moving has finished...."));
+		event.reply(Robot.voice("Moving has finished...."));
 	}
 	
 	private void pull(VoiceChannel location, Guild guild) {

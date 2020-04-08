@@ -8,7 +8,7 @@ import java.util.List;
 import com.jagrosh.jdautilities.command.Command;
 import com.jagrosh.jdautilities.command.CommandEvent;
 
-import Crank_Bot.RobotSpeech;
+import Crank_Bot.Robot;
 import net.dv8tion.jda.api.EmbedBuilder;
 
 public class PadoruCommand extends Command {
@@ -36,7 +36,7 @@ public class PadoruCommand extends Command {
 		
         /* Build the Embed Card */
 		EmbedBuilder em = new EmbedBuilder();
-		em.setTitle(RobotSpeech.robotify("Padoru Says..."));	
+		em.setTitle(Robot.voice("Padoru Says..."));	
         em.addField(list.get(response), "", false);
         em.addField("message for ", event.getMember().getAsMention(), true);
         em.setFooter("~Padooooruuuuu", "https://i.kym-cdn.com/photos/images/masonry/001/568/913/510.png");

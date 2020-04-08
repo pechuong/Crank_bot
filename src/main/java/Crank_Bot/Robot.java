@@ -1,7 +1,7 @@
 package Crank_Bot;
 
-public abstract class RobotSpeech {
-	public static String robotify(String message) {
+public class Robot {
+	public static String voice(String message) {
 		StringBuilder converted = new StringBuilder();
 		for (char c : message.toCharArray()) {
 			if (Math.random() >= 0.25) {
