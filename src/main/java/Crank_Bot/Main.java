@@ -118,8 +118,8 @@ public class Main {
         		new RocketGrabCommand(),
         		new StaticFieldCommand(waiter),
         		new PowerFistCommand(),
-        		new OverdriveCommand()
-        		//new ClearChatCommand()
+        		new OverdriveCommand(),
+        		new ClearChatCommand()
         		//new PadoruCommand(),
         		//new UwuCommand(),
         		//new RedTrinketCommand(),
