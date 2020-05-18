@@ -117,12 +117,14 @@ public class Main {
         client.addCommands(
         		new RocketGrabCommand(),
         		new StaticFieldCommand(waiter),
-        		new ClearChatCommand(),
-        		new PadoruCommand(),
-        		new UwuCommand(),
-        		new RedTrinketCommand(),
-        		new SuggestCommand(),
-        		new PowerFistCommand()
+        		new PowerFistCommand(),
+        		new OverdriveCommand(),
+        		new ClearChatCommand()
+        		//new PadoruCommand(),
+        		//new UwuCommand(),
+        		//new RedTrinketCommand(),
+        		//new SuggestCommand(),
+        		
                 // command to show information about the bot
         		/*
                 new AboutCommand(Color.BLUE, "an example bot",
@@ -148,7 +150,7 @@ public class Main {
 		jda = new JDABuilder(AccountType.BOT)
 				.setToken(token)
 				.setStatus(OnlineStatus.IDLE)
-				.setActivity(Activity.watching("my adc die :-)"))
+				.setActivity(Activity.watching("my adc die :D"))
 				.addEventListeners(waiter, client.build())
 				.build();
 	}
