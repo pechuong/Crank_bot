@@ -1,5 +1,7 @@
 package Crank_Bot;
 
+import java.util.List;
+
 import com.jagrosh.jdautilities.command.Command;
 import com.jagrosh.jdautilities.command.CommandEvent;
 
@@ -16,11 +18,24 @@ public class OverdriveCommand extends Command {
 
 	@Override
 	protected void execute(CommandEvent event) {
-		// get author
+		List<VoiceChannel> channels = event.getGuild().getVoiceChannels();
 		Member member = event.getMember();
-		VoiceChannel channel = event.getMember().getVoiceState().getChannel();
+		VoiceChannel channel = member.getVoiceState().getChannel();
 		AudioManager manager = event.getGuild().getAudioManager();
 		manager.openAudioConnection(channel);
+		event.reply(channel.getMembers().toString());
+		int index = channels.indexOf(channel);
+		int size = channels.size();
+		int i = (index - 1 + size) % size;
+		event.reply("channel: " + channel);
+		while (i != channels.indexOf(channel)) {
+			event.reply("Moving to: " + channels.get(i).getName());
+			manager.openAudioConnection(channels.get(i));
+			event.reply(channels.get(i).getMembers().toString());
+			event.reply("in channel: " + channel);
+			i = Math.abs((i - 1 + size) % size);
+		}
+		event.reply("Finished moving");
 	}
 	
 }

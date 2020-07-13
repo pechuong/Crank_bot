@@ -22,7 +22,7 @@ public class StaticFieldCommand extends Command {
 	
 	public StaticFieldCommand(EventWaiter waiter) {
 		this.name = "static-field";
-		this.aliases = new String[]{"silence"};
+		this.aliases = new String[]{"silence", "static"};
 		this.waiter = waiter;
 	}
 
