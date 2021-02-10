@@ -8,4 +8,6 @@ A discord bot inspired by the game character Blitzcrank from L.O.L
 
 ## Working Commands
 - Rocket-grab
+- Static-field
+- Power-fist
 - Clear-chat
