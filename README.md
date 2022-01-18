@@ -1,4 +1,4 @@
-# Crank_bot
+# Crank_bot (Deprecated - will have a diff repo soon)
 A discord bot inspired by the game character Blitzcrank from L.O.L
 <img src="https://i.ytimg.com/vi/r6c5YXLAYGo/maxresdefault.jpg" width="500px"/>
 
